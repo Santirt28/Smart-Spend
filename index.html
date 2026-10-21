@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spend Smart</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-950 text-slate-100">
+
+  <div class="flex min-h-screen">
+
+    <!-- Desktop sidebar -->
+    <aside class="hidden md:flex md:w-64 md:shrink-0 md:flex-col md:sticky md:top-0 md:h-screen border-r border-slate-800 p-4">
+      <h1 class="pt-6 text-2xl font-bold text-emerald-400">Spend Smart</h1>
+
+      <nav aria-label="Main navigation" class="mt-8 flex flex-col gap-1">
+        <button type="button" data-view="dashboard" class="rounded-lg px-3 py-3 text-left hover:bg-slate-800">Dashboard</button>
+        <button type="button" data-view="transactions" class="rounded-lg px-3 py-3 text-left hover:bg-slate-800">Transactions</button>
+        <button type="button" data-view="budgets" class="rounded-lg px-3 py-3 text-left hover:bg-slate-800">Budgets</button>
+        <button type="button" data-view="savings" class="rounded-lg px-3 py-3 text-left hover:bg-slate-800">Savings Goals</button>
+        <button type="button" data-view="smart-plan" class="rounded-lg px-3 py-3 text-left hover:bg-slate-800">Smart Plan</button>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="min-w-0 flex-1 p-4 pb-24 sm:p-6 sm:pb-24 md:p-8">
+      <section data-section="dashboard">
+        <h2 class="text-xl font-semibold sm:text-2xl">Dashboard</h2>
+        <p class="mt-2 text-slate-400">Income, expenses and balance will appear here.</p>
+      </section>
+
+      <section data-section="transactions" hidden>
+        <h2 class="text-xl font-semibold sm:text-2xl">Transactions</h2>
+        <p class="mt-2 text-slate-400">Your transactions will appear here.</p>
+      </section>
+
+      <section data-section="budgets" hidden>
+        <h2 class="text-xl font-semibold sm:text-2xl">Budgets</h2>
+        <p class="mt-2 text-slate-400">Monthly limits by category.</p>
+      </section>
+
+      <section data-section="savings" hidden>
+        <h2 class="text-xl font-semibold sm:text-2xl">Savings Goals</h2>
+        <p class="mt-2 text-slate-400">Track your savings goals.</p>
+      </section>
+
+      <section data-section="smart-plan" hidden>
+        <h2 class="text-xl font-semibold sm:text-2xl">Smart Plan</h2>
+        <p class="mt-2 text-slate-400">Suggested allocation of your income.</p>
+      </section>
+    </main>
+  </div>
+
+  <!-- Mobile navigation -->
+  <nav aria-label="Mobile navigation" class="fixed inset-x-0 bottom-0 z-50 flex border-t border-slate-800 bg-slate-900 px-1 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] md:hidden">
+    <button type="button" data-view="dashboard" class="min-w-0 flex-1 rounded-lg px-1 py-2 text-xs hover:bg-slate-800">Home</button>
+    <button type="button" data-view="transactions" class="min-w-0 flex-1 rounded-lg px-1 py-2 text-xs hover:bg-slate-800">Transactions</button>
+    <button type="button" data-view="budgets" class="min-w-0 flex-1 rounded-lg px-1 py-2 text-xs hover:bg-slate-800">Budgets</button>
+    <button type="button" data-view="savings" class="min-w-0 flex-1 rounded-lg px-1 py-2 text-xs hover:bg-slate-800">Goals</button>
+    <button type="button" data-view="smart-plan" class="min-w-0 flex-1 rounded-lg px-1 py-2 text-xs hover:bg-slate-800">Plan</button>
+  </nav>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
