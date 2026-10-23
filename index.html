@@ -22,9 +22,37 @@
     </aside>
 
     <main class="min-w-0 flex-1 p-4 pb-24 sm:p-6 md:p-8">
-      <section data-section="dashboard">
-        <h2 class="text-xl font-semibold sm:text-2xl">Dashboard</h2>
-        <p class="mt-2 text-slate-400">Income, expenses and balance will appear here.</p>
+      <section data-section="dashboard" hidden class="space-y-6">
+        <h2 class="text-2xl font-semibold">Dashboard</h2>
+
+        <div class="grid gap-4 sm:grid-cols-3">
+          <div class="rounded-xl border border-slate-800 bg-slate-900 p-4">
+            <p class="text-sm text-slate-400">Income</p>
+            <p id="dashboard-income" class="mt-1 text-2xl font-semibold text-emerald-400">$0.00</p>
+          </div>
+          <div class="rounded-xl border border-slate-800 bg-slate-900 p-4">
+            <p class="text-sm text-slate-400">Expenses</p>
+            <p id="dashboard-expenses" class="mt-1 text-2xl font-semibold text-red-400">$0.00</p>
+          </div>
+          <div class="rounded-xl border border-slate-800 bg-slate-900 p-4">
+            <p class="text-sm text-slate-400">Balance</p>
+            <p id="dashboard-balance" class="mt-1 text-2xl font-semibold">$0.00</p>
+          </div>
+        </div>
+
+        <div class="rounded-xl border border-slate-800 bg-slate-900 p-4">
+          <h3 class="font-semibold">This month</h3>
+          <p class="mt-2 text-sm text-slate-400">
+            Income: <span id="dashboard-month-income" class="text-slate-100">$0.00</span>
+            · Expenses: <span id="dashboard-month-expenses" class="text-slate-100">$0.00</span>
+          </p>
+        </div>
+
+        <div>
+          <h3 class="font-semibold">Recent transactions</h3>
+          <p id="dashboard-empty" class="mt-2 text-slate-400">No transactions yet.</p>
+          <ul id="dashboard-recent" class="mt-2 space-y-2"></ul>
+        </div>
       </section>
 
       <section data-section="transactions" hidden class="space-y-6">

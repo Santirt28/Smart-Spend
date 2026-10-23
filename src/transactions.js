@@ -55,3 +55,19 @@ export function calculateTotals(transactions) {
 
   return { income, expenses, balance };
 }
+
+export function getCurrentMonthKey(now = new Date()) {
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  return `${year}-${month}`;
+}
+
+export function filterByMonth(transactions, monthKey) {
+  return transactions.filter((transaction) => transaction.date.startsWith(monthKey));
+}
+
+export function getRecentTransactions(transactions, limit = 5) {
+  return [...transactions]
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, limit);
+}
