@@ -1,3 +1,5 @@
+import { initTransactionsView } from "./ui/transactions-view.js";
+
 const sections = document.querySelectorAll("[data-section]");
 const navButtons = document.querySelectorAll("[data-view]");
 
@@ -32,4 +34,5 @@ navButtons.forEach((button) => {
   });
 });
 
+initTransactionsView();
 showView("dashboard");

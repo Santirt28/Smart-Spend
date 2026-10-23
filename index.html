@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +8,8 @@
 </head>
 
 <body class="min-h-screen bg-slate-950 text-slate-100">
-
   <div class="flex min-h-screen">
-
-    <!-- Desktop sidebar -->
-    <aside class="hidden md:flex md:w-64 md:shrink-0 md:flex-col md:sticky md:top-0 md:h-screen border-r border-slate-800 p-4">
+    <aside class="sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r border-slate-800 p-4 md:flex">
       <h1 class="pt-6 text-2xl font-bold text-emerald-400">Spend Smart</h1>
 
       <nav aria-label="Main navigation" class="mt-8 flex flex-col gap-1">
@@ -25,16 +21,115 @@
       </nav>
     </aside>
 
-    <!-- Main content -->
-    <main class="min-w-0 flex-1 p-4 pb-24 sm:p-6 sm:pb-24 md:p-8">
+    <main class="min-w-0 flex-1 p-4 pb-24 sm:p-6 md:p-8">
       <section data-section="dashboard">
         <h2 class="text-xl font-semibold sm:text-2xl">Dashboard</h2>
         <p class="mt-2 text-slate-400">Income, expenses and balance will appear here.</p>
       </section>
 
-      <section data-section="transactions" hidden>
-        <h2 class="text-xl font-semibold sm:text-2xl">Transactions</h2>
-        <p class="mt-2 text-slate-400">Your transactions will appear here.</p>
+      <section data-section="transactions" hidden class="space-y-6">
+        <header>
+          <h2 class="text-xl font-semibold sm:text-2xl">Transactions</h2>
+          <p class="mt-2 text-slate-400">Add and manage income and expenses.</p>
+        </header>
+
+        <form id="transaction-form"
+              class="grid gap-3 rounded-xl border border-slate-800 bg-slate-900 p-4 sm:grid-cols-2 lg:grid-cols-3">
+          <label class="grid gap-1 text-sm">Type
+            <select name="type" required class="rounded-lg bg-slate-950 p-3">
+              <option value="expense">Expense</option>
+              <option value="income">Income</option>
+            </select>
+          </label>
+
+          <label class="grid gap-1 text-sm">Amount
+            <input name="amount" type="number" min="0.01" max="1000000000"
+                   step="0.01" required placeholder="0.00"
+                   class="rounded-lg bg-slate-950 p-3" />
+          </label>
+
+          <label class="grid gap-1 text-sm">Description
+            <input name="description" type="text" maxlength="80" required
+                   placeholder="e.g. Groceries"
+                   class="rounded-lg bg-slate-950 p-3" />
+          </label>
+
+          <label class="grid gap-1 text-sm">Category
+            <select name="category" required class="rounded-lg bg-slate-950 p-3">
+              <option value="Food">Food</option>
+              <option value="Housing">Housing</option>
+              <option value="Transport">Transport</option>
+              <option value="Health">Health</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Salary">Salary</option>
+              <option value="Other">Other</option>
+            </select>
+          </label>
+
+          <label class="grid gap-1 text-sm">Date
+            <input name="date" type="date" required class="rounded-lg bg-slate-950 p-3" />
+          </label>
+
+          <div class="flex gap-2 sm:col-span-2 lg:col-span-1">
+            <button type="submit"
+                    class="flex-1 rounded-lg bg-emerald-500 p-3 font-semibold text-slate-950 hover:bg-emerald-400">
+              Add transaction
+            </button>
+            <button id="transaction-cancel" type="button" hidden
+                    class="rounded-lg bg-slate-700 px-3 text-white hover:bg-slate-600">
+              Cancel
+            </button>
+          </div>
+
+          <p id="transaction-form-message" role="status" aria-live="polite"
+             class="sm:col-span-2 lg:col-span-3"></p>
+        </form>
+
+        <div class="grid gap-3 sm:grid-cols-3">
+          <label class="grid gap-1 text-sm">Search
+            <input id="transaction-search" type="search" placeholder="Search description"
+                   class="rounded-lg bg-slate-900 p-3" />
+          </label>
+
+          <label class="grid gap-1 text-sm">Filter
+            <select id="transaction-filter" class="rounded-lg bg-slate-900 p-3">
+              <option value="all">All types</option>
+              <option value="income">Income</option>
+              <option value="expense">Expense</option>
+            </select>
+          </label>
+
+          <label class="grid gap-1 text-sm">Sort
+            <select id="transaction-sort" class="rounded-lg bg-slate-900 p-3">
+              <option value="date-desc">Newest first</option>
+              <option value="date-asc">Oldest first</option>
+              <option value="amount-desc">Amount: high to low</option>
+              <option value="amount-asc">Amount: low to high</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="overflow-x-auto rounded-xl border border-slate-800">
+          <table class="min-w-[40rem] w-full text-left">
+            <caption class="sr-only">Your transactions</caption>
+            <thead class="bg-slate-900 text-slate-300">
+              <tr>
+                <th scope="col" class="p-3">Date</th>
+                <th scope="col" class="p-3">Description</th>
+                <th scope="col" class="p-3">Category</th>
+                <th scope="col" class="p-3">Type</th>
+                <th scope="col" class="p-3 text-right">Amount</th>
+                <th scope="col" class="p-3">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="transactions-table-body"></tbody>
+          </table>
+        </div>
+
+        <p id="transactions-empty" class="text-center text-slate-400">
+          No transactions yet.
+        </p>
       </section>
 
       <section data-section="budgets" hidden>
@@ -54,8 +149,8 @@
     </main>
   </div>
 
-  <!-- Mobile navigation -->
-  <nav aria-label="Mobile navigation" class="fixed inset-x-0 bottom-0 z-50 flex border-t border-slate-800 bg-slate-900 px-1 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] md:hidden">
+  <nav aria-label="Mobile navigation"
+       class="fixed inset-x-0 bottom-0 z-50 flex border-t border-slate-800 bg-slate-900 px-1 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] md:hidden">
     <button type="button" data-view="dashboard" class="min-w-0 flex-1 rounded-lg px-1 py-2 text-xs hover:bg-slate-800">Home</button>
     <button type="button" data-view="transactions" class="min-w-0 flex-1 rounded-lg px-1 py-2 text-xs hover:bg-slate-800">Transactions</button>
     <button type="button" data-view="budgets" class="min-w-0 flex-1 rounded-lg px-1 py-2 text-xs hover:bg-slate-800">Budgets</button>
