@@ -1,5 +1,6 @@
 import { initTransactionsView } from "./ui/transactions-view.js";
 import { renderDashboard } from "./ui/dashboard.js";
+import { initBudgetsView, renderBudgets } from "./ui/budgets-view.js";
 
 const sections = document.querySelectorAll("[data-section]");
 const navButtons = document.querySelectorAll("[data-view]");
@@ -10,6 +11,10 @@ const INACTIVE_CLASS = "text-slate-400";
 function showView(viewName) {
   if (viewName === "dashboard") {
     renderDashboard();
+  }
+
+  if (viewName === "budgets") {
+    renderBudgets();
   }
 
   sections.forEach((section) => {
@@ -40,4 +45,5 @@ navButtons.forEach((button) => {
 });
 
 initTransactionsView();
+initBudgetsView();
 showView("dashboard");
