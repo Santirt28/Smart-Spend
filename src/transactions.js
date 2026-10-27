@@ -17,11 +17,17 @@ export function addTransaction(transactions, input) {
 
 export function updateTransaction(transactions, id, input) {
   const exists = transactions.some((transaction) => transaction.id === id);
+
   if (!exists) {
-    return { ok: false, errors: { general: "Transaction not found." }, transactions };
+    return {
+      ok: false,
+      errors: { general: "Transaction not found." },
+      transactions,
+    };
   }
 
   const result = validateTransaction(input);
+
   if (!result.valid) {
     return { ok: false, errors: result.errors, transactions };
   }
@@ -29,6 +35,7 @@ export function updateTransaction(transactions, id, input) {
   const updated = transactions.map((transaction) =>
     transaction.id === id ? { id, ...result.value } : transaction
   );
+
   return { ok: true, errors: {}, transactions: updated };
 }
 
@@ -44,6 +51,7 @@ export function calculateTotals(transactions) {
       } else {
         sum.expenses += transaction.amount;
       }
+
       return sum;
     },
     { income: 0, expenses: 0 }
@@ -70,4 +78,22 @@ export function getRecentTransactions(transactions, limit = 5) {
   return [...transactions]
     .sort((a, b) => b.date.localeCompare(a.date))
     .slice(0, limit);
+}
+
+export function calculateExpensesByCategory(transactions) {
+  const totals = {};
+
+  transactions.forEach((transaction) => {
+    if (transaction.type !== "expense") return;
+
+    totals[transaction.category] =
+      (totals[transaction.category] || 0) + transaction.amount;
+  });
+
+  return Object.fromEntries(
+    Object.entries(totals).map(([category, amount]) => [
+      category,
+      Math.round(amount * 100) / 100,
+    ])
+  );
 }
