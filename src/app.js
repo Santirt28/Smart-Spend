@@ -1,6 +1,7 @@
 import { initTransactionsView } from "./ui/transactions-view.js";
 import { renderDashboard } from "./ui/dashboard.js";
 import { initBudgetsView, renderBudgets } from "./ui/budgets-view.js";
+import { initSavingsView, renderSavings } from "./ui/savings-view.js"; // NEW
 import { initSmartPlanView } from "./ui/smart-plan-view.js";
 
 const sections = document.querySelectorAll("[data-section]");
@@ -16,6 +17,10 @@ function showView(viewName) {
 
   if (viewName === "budgets") {
     renderBudgets();
+  }
+
+  if (viewName === "savings") { // NEW
+    renderSavings();
   }
 
   sections.forEach((section) => {
@@ -47,5 +52,6 @@ navButtons.forEach((button) => {
 
 initTransactionsView();
 initBudgetsView();
+initSavingsView(); // NEW
 initSmartPlanView();
 showView("dashboard");
