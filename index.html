@@ -13,11 +13,26 @@
       <h1 class="pt-6 text-2xl font-bold text-emerald-400">Spend Smart</h1>
 
       <nav aria-label="Main navigation" class="mt-8 flex flex-col gap-1">
-        <button type="button" data-view="dashboard" class="rounded-lg px-3 py-3 text-left hover:bg-slate-800">Dashboard</button>
-        <button type="button" data-view="transactions" class="rounded-lg px-3 py-3 text-left hover:bg-slate-800">Transactions</button>
-        <button type="button" data-view="budgets" class="rounded-lg px-3 py-3 text-left hover:bg-slate-800">Budgets</button>
-        <button type="button" data-view="savings" class="rounded-lg px-3 py-3 text-left hover:bg-slate-800">Savings Goals</button>
-        <button type="button" data-view="smart-plan" class="rounded-lg px-3 py-3 text-left hover:bg-slate-800">Smart Plan</button>
+        <button type="button" data-view="dashboard"
+                class="rounded-lg px-3 py-3 text-left hover:bg-slate-800 md:py-4 lg:py-3">
+          Dashboard
+        </button>
+        <button type="button" data-view="transactions"
+                class="rounded-lg px-3 py-3 text-left hover:bg-slate-800 md:py-4 lg:py-3">
+          Transactions
+        </button>
+        <button type="button" data-view="budgets"
+                class="rounded-lg px-3 py-3 text-left hover:bg-slate-800 md:py-4 lg:py-3">
+          Budgets
+        </button>
+        <button type="button" data-view="savings"
+                class="rounded-lg px-3 py-3 text-left hover:bg-slate-800 md:py-4 lg:py-3">
+          Savings Goals
+        </button>
+        <button type="button" data-view="smart-plan"
+                class="rounded-lg px-3 py-3 text-left hover:bg-slate-800 md:py-4 lg:py-3">
+          Smart Plan
+        </button>
       </nav>
     </aside>
 
@@ -178,7 +193,9 @@
 
       <section data-section="budgets" hidden class="space-y-6">
         <h2 class="text-2xl font-semibold">Budgets</h2>
-        <p class="text-slate-400">Set a monthly limit per expense category. Spending is counted for the current month.</p>
+        <p class="text-slate-400">
+          Set a monthly limit per expense category. Spending is counted for the current month.
+        </p>
 
         <form id="budget-form" novalidate
               class="grid gap-4 rounded-xl border border-slate-800 bg-slate-900 p-4 md:grid-cols-3">
@@ -203,7 +220,8 @@
           </div>
         </form>
 
-        <p id="budget-message" role="status" aria-live="polite" class="text-sm text-slate-300"></p>
+        <p id="budget-message" role="status" aria-live="polite"
+           class="text-sm text-slate-300"></p>
         <p id="budgets-empty" class="text-slate-400">No budgets yet. Create your first one above.</p>
         <ul id="budgets-list" class="space-y-3"></ul>
       </section>
@@ -244,7 +262,8 @@
           </div>
         </form>
 
-        <p id="goal-message" role="status" aria-live="polite" class="text-sm text-slate-300"></p>
+        <p id="goal-message" role="status" aria-live="polite"
+           class="text-sm text-slate-300"></p>
         <p id="goals-empty" class="text-slate-400">No savings goals yet. Create your first one above.</p>
         <ul id="goals-list" class="space-y-3"></ul>
       </section>
@@ -279,7 +298,8 @@
           </div>
         </form>
 
-        <p id="plan-message" role="status" aria-live="polite" class="text-sm text-red-400"></p>
+        <p id="plan-message" role="status" aria-live="polite"
+           class="text-sm text-red-400"></p>
         <ul id="plan-results" class="space-y-3"></ul>
       </section>
     </main>
@@ -287,11 +307,26 @@
 
   <nav aria-label="Mobile navigation"
        class="fixed inset-x-0 bottom-0 z-50 flex border-t border-slate-800 bg-slate-900 px-1 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] md:hidden">
-    <button type="button" data-view="dashboard" class="min-w-0 flex-1 rounded-lg px-1 py-2 text-xs hover:bg-slate-800">Home</button>
-    <button type="button" data-view="transactions" class="min-w-0 flex-1 rounded-lg px-1 py-2 text-xs hover:bg-slate-800">Transactions</button>
-    <button type="button" data-view="budgets" class="min-w-0 flex-1 rounded-lg px-1 py-2 text-xs hover:bg-slate-800">Budgets</button>
-    <button type="button" data-view="savings" class="min-w-0 flex-1 rounded-lg px-1 py-2 text-xs hover:bg-slate-800">Goals</button>
-    <button type="button" data-view="smart-plan" class="min-w-0 flex-1 rounded-lg px-1 py-2 text-xs hover:bg-slate-800">Plan</button>
+    <button type="button" data-view="dashboard"
+            class="min-w-0 flex-1 rounded-lg px-1 py-3 text-xs hover:bg-slate-800 sm:py-4">
+      Home
+    </button>
+    <button type="button" data-view="transactions"
+            class="min-w-0 flex-1 rounded-lg px-1 py-3 text-xs hover:bg-slate-800 sm:py-4">
+      Transactions
+    </button>
+    <button type="button" data-view="budgets"
+            class="min-w-0 flex-1 rounded-lg px-1 py-3 text-xs hover:bg-slate-800 sm:py-4">
+      Budgets
+    </button>
+    <button type="button" data-view="savings"
+            class="min-w-0 flex-1 rounded-lg px-1 py-3 text-xs hover:bg-slate-800 sm:py-4">
+      Goals
+    </button>
+    <button type="button" data-view="smart-plan"
+            class="min-w-0 flex-1 rounded-lg px-1 py-3 text-xs hover:bg-slate-800 sm:py-4">
+      Plan
+    </button>
   </nav>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
